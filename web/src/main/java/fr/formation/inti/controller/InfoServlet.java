@@ -1,14 +1,17 @@
 package fr.formation.inti.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Enumeration;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class InfoServlet
@@ -69,7 +72,19 @@ public class InfoServlet extends HttpServlet {
 		out.println("<head><title> Infos Servlet</title></head>");
 		String login = request.getParameter("login");
 		String pass = request.getParameter("password");
-		out.println("<h1>Method Post : "+login+" "+pass+"</h1>");
+		
+		HttpSession session = request.getSession();
+		
+		if("root".equals(login) && "123456".equals(pass)) {
+			session.setAttribute("message", "you are connected");
+			session.setAttribute("dateConnection", new Date());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+			dispatcher.forward(request, response);
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+			dispatcher.forward(request, response);
+			
+		}
 		
 		
 	}
