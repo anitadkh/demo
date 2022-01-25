@@ -31,6 +31,7 @@ public class HelloServlet extends HttpServlet {
 		.append("<head><title>Heelo Servlet</title></head>")
 		.append("<body>")
 		.append("<h1>Hello Servlet 3</h1>")
+		.append("<h2>Welcome</h2>")
 		.append("</body>")
 		.append("</html>");
 	}
