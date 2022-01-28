@@ -27,23 +27,22 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String message = (String) session.getAttribute("message");
-		Date con = (Date) session.getAttribute("dateConnection");
-		if(message == null) {
-			response.sendRedirect("index.html");
-		}else {
-			response.getWriter().append(message).append(con.toString())
-			.append("<br>").append(session.getId());
-		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		HttpSession session = request.getSession(false);
+		String message;
+		Date con ;
+		if(session !=null) {
+			message = (String) session.getAttribute("message");
+			con = (Date) session.getAttribute("dateConnection");
+			response.getWriter().append(message).append(con.toString())
+			.append("<br>").append(session.getId());
+		} 
 	}
 
 }

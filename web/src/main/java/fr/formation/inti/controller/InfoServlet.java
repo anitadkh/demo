@@ -31,6 +31,7 @@ public class InfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		ServletOutputStream out = response.getOutputStream();
 		out.println("<html>");
 		out.println("<head><title> Infos Servlet</title></head>");
@@ -68,25 +69,21 @@ public class InfoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletOutputStream out = response.getOutputStream();
-		out.println("<html>");
-		out.println("<head><title> Infos Servlet</title></head>");
+
 		String login = request.getParameter("login");
 		String pass = request.getParameter("password");
 		
 		HttpSession session = request.getSession();
 		
 		if("root".equals(login) && "123456".equals(pass)) {
-			session.setAttribute("message", "you are connected");
+			session.setAttribute("message", "you are connected ");
 			session.setAttribute("dateConnection", new Date());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
 			dispatcher.forward(request, response);
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 			dispatcher.forward(request, response);
-			
 		}
-		
-		
 	}
 
 }

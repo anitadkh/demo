@@ -1,4 +1,5 @@
 <!DOCTYPE>
+<%@page import="java.util.Date"%>
 <html lang="en">
 
 <head>
@@ -17,9 +18,9 @@
 	
 	</form>
 	
-	
+	<%= new Date() %>
 	<br>
-	<form action="infos" method="post">
+	<form action="login" method="post">
 		<label>Login</label>
 		<input type="text" name="login"><br>
 		<label>Password</label>
@@ -27,6 +28,12 @@
 		
 		<input type="submit" value="Envoyer">
 	</form>
+	
+	
+	
+	
+	
+	
 
 </body>
 
